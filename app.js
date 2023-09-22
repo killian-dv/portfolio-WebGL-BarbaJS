@@ -16,16 +16,27 @@ export default class Sketch {
     this.scene = new THREE.Scene();
 
     this.renderer = new THREE.WebGLRenderer({ antialias: true });
-    this.renderer.setSize(this.width, this.height);
-
+    this.renderer.setPixelRatio(window.devicePixelRatio);
     this.container.appendChild(this.renderer.domElement);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
 
     this.time = 0;
+    this.resize();
     this.addObjects();
     this.render();
+    this.setupResize();
   }
 
+  resize() {
+    this.width = this.container.offsetWidth;
+    this.height = this.container.offsetHeight;
+    this.renderer.setSize(this.width, this.height);
+    this.camera.aspect = this.width / this.height;
+    this.camera.updateProjectionMatrix();
+  }
+  setupResize() {
+    window.addEventListener("resize", this.resize.bind(this));
+  }
   addObjects() {
     this.geometry = new THREE.BoxGeometry(0.2, 0.2, 0.2);
     this.material = new THREE.MeshNormalMaterial();
@@ -40,7 +51,7 @@ export default class Sketch {
     this.mesh.rotation.y = this.time / 1000;
 
     this.renderer.render(this.scene, this.camera);
-    console.log(this.time);
+    // console.log(this.time);
     requestAnimationFrame(this.render.bind(this));
   }
 }
