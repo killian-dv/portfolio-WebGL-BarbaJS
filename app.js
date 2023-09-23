@@ -41,7 +41,8 @@ export default class Sketch {
     window.addEventListener("resize", this.resize.bind(this));
   }
   addObjects() {
-    this.geometry = new THREE.PlaneGeometry(0.5, 0.5, 100, 100);
+    // this.geometry = new THREE.PlaneGeometry(0.5, 0.5, 100, 100);
+    this.geometry = new THREE.SphereGeometry(0.5, 160, 160);
     this.material = new THREE.ShaderMaterial({
       // wireframe: true,
       uniforms: {
