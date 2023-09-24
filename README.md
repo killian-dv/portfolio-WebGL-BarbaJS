@@ -9,7 +9,7 @@ Lien de l'app : [https://virus-animation-threejs.vercel.app/](https://virus-anim
 Project is created with:
 
 - [Vite](https://vitejs.dev/)
-- [React](https://react.dev/)
+- [Three.js](https://threejs.org/)
 
 ## Installation
 
